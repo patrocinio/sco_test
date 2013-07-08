@@ -1,0 +1,12 @@
+import urllib2, base64, urllib
+
+def testProvisioning():
+    url = 'https://patro-kersrv2.tivlab.raleigh.ibm.com/resources/patterns/2'
+    request = urllib2.Request(url)
+    string = base64.encodestring('admin:password')
+    request.add_header ("Authorization", "Basic %s" % string)
+    request.add_header ("Content-Type", "application/json;charset=UTF-8")
+    request.add_header ("X-IBM-Workload-Deployer-API-Version", "3.0")
+    response = urllib2.urlopen(request)
+    print "response: ", response.read()
+    assert False

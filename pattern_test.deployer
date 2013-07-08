@@ -1,0 +1,7 @@
+patterns = deployer.patterns
+print patterns
+for pattern in patterns:
+  if pattern.name == "test":
+    print "Achei!!!!"
+
+#deployer.virtualsystems.create({'name': 'cli', 'environmentprofile': 'My Environment Profile', 'pattern': 'test'})
