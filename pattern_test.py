@@ -1,6 +1,6 @@
 import time
 
-PART_LABEL="rhel_63"
+IMAGE_NAME="rhel_63"
 PROFILE_NAME="VmwareDev01"
 CLOUD_NAME="VmwareDev01_nova_vmware"
 IP_GROUP_NAME="VmwareDev01_public_130.9.218.0/23"
@@ -37,8 +37,9 @@ def get_flavor(cloud):
   return cloud.flavors["m1.tiny"][0]
 
 def get_part():
-  return deployer.parts[PART_LABEL][0]
-
+  part = deployer.virtualimages[IMAGE_NAME][0].parts[0]
+  print "part: ", part
+  return part
 
 def wait_for_instance():
   instance = get_instance()
@@ -115,6 +116,7 @@ def create_pattern():
   print "Creating pattern"
   pattern = deployer.patterns.create({"name": PATTERN_NAME})
   part = create_part()
+  print "Part: ", part.id
   pattern.parts.create(part.id)
   return pattern
   
