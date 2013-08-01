@@ -2,10 +2,10 @@ import time
 
 INSTANCE_NAME="WinguInstance"
 PATTERN_NAME="WinguPattern"
-PROFILE_NAME="My Environment Profile"
-CLOUD_NAME="RegionOne_nova"
-IP_GROUP_NAME="RegionOne_public_10.20.0.0/24"
-PART_LABEL="RHEL63"
+PROFILE_NAME="VmwareDev01_DHCP"
+CLOUD_NAME="VmwareDev01_nova_vmware"
+IP_GROUP_NAME="VmwareDev01_public_130.9.218.0/23"
+PART_LABEL="rhel_63"
 PASSWORD="password"
 
 #def search_object(list, expression):
