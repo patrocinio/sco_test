@@ -1,20 +1,12 @@
 import time
 
-IMAGE_NAME="rhel_63"
-PROFILE_NAME="VmwareDev01"
-CLOUD_NAME="VmwareDev01_nova_vmware"
-IP_GROUP_NAME="VmwareDev01_public_130.9.218.0/23"
-
 INSTANCE_NAME="WinguInstance"
 PATTERN_NAME="WinguPattern"
+PROFILE_NAME="VmwareDev03_EP"
+CLOUD_NAME="VmwareDev03_nova_vmware"
+IP_GROUP_NAME="VmwareDev03_public_130.9.218.0/23"
+PART_LABEL="rhel6template_mope_ae"
 PASSWORD="password"
-
-#def search_object(list, expression):
-#  for object in list:
-#    if object.name == expression:
-#      return object
-#  return None
-
 
 def get_pattern():
   patterns = deployer.patterns[PATTERN_NAME]
@@ -37,9 +29,11 @@ def get_flavor(cloud):
   return cloud.flavors["m1.tiny"][0]
 
 def get_part():
-  part = deployer.virtualimages[IMAGE_NAME][0].parts[0]
-  print "part: ", part
-  return part
+  parts = deployer.parts[PART_LABEL]
+  if len(parts) == 0:
+     return None
+  return parts[0]
+
 
 def wait_for_instance():
   instance = get_instance()
@@ -116,7 +110,6 @@ def create_pattern():
   print "Creating pattern"
   pattern = deployer.patterns.create({"name": PATTERN_NAME})
   part = create_part()
-  print "Part: ", part.id
   pattern.parts.create(part.id)
   return pattern
   
